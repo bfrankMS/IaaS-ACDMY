@@ -13,6 +13,7 @@ Log Analytics Workspace: your choice (needs to be unique)
 LogAnalyticsScreenshot
 
 
+```
 [Azure Portal] -> Home -> Resource Groups ->'ACDMY-LogAnalytics' 
   -> e.g. your workspace -> Settings: Advanced Settings
 
@@ -29,8 +30,9 @@ enter 172.16.101.1:800 as the proxy
 
 Control Panel\System and Security
 ->Microsoft Monitoring Agent Properties
+```
 
-
+```
 [Azure Portal] -> Home -> Resource Groups ->'ACDMY-LogAnalytics' 
   -> e.g. bfrank0815WSpace -> Settings: Advanced Settings
     ->"Data" -> "Windows Event Logs.
@@ -38,23 +40,26 @@ Control Panel\System and Security
           ->check the severities Error and Warning.
             -> Click Save at the top of the page to save the configuration.
     
-    ->"Data" -> "Windows Performance Counters.
+    ->"Data" -> "Windows Performance Counters"
         ->select some counters unselect some others.
 add the following counter
 Processor Information(_Total)\% Processor Time
 
     -> Click Save at the top of the page to save the configuration.
+```
 
+```
 [Azure Portal] -> Resource groups -> ACDMY-LogAnalytics -> bfrankworkspace - Logs
-
+```
 In the query window type:
 
-Perf
+_Perf_
 
 ->hit 'Run' and see what happens.
 
 try:
-Perf | where CounterName =='% Processor Time'
+
+_Perf | where CounterName =='% Processor Time'_
    
 ->Check out the 'Chart' view 
    ->Click the PIN button on the right
@@ -62,5 +67,5 @@ Perf | where CounterName =='% Processor Time'
        (if not: [Azure Portal] -> Dashboard -> Hit 'Share' -> then try again.)
 
 
-Perf | where CounterName == '% Free Space'
-Perf | where InstanceName == 'C:' | where CounterName == '% Free Space' | summarize any(CounterValue) by bin(TimeGenerated, 1m)
+_Perf | where CounterName == '% Free Space'
+Perf | where InstanceName == 'C:' | where CounterName == '% Free Space' | summarize any(CounterValue) by bin(TimeGenerated, 1m)_
