@@ -11,9 +11,9 @@ Herzlich willkommen zum:
 2. VM - mit VM Wizard im Portal erstellen.
 3. Hybrid Networking mit VPN
 4. Backup von einer VM einrichten.
-5. Kosten Überblick erhalten / Einsparmöglichkeiten diskutieren
-6. Automation
-7. Monitoring onprem CPU Usage
+5. Monitoring onprem CPU Usage
+x. Kosten Überblick erhalten / Einsparmöglichkeiten diskutieren
+x. Automation
 
 Have fun!
 
