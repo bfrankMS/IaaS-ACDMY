@@ -45,4 +45,30 @@ Location: West Europe
 
 ->Create
 ```
+![Local Network Gateway](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%203/LocalNetworkGW.png)
+
+**Verbindungs Objekt mit 'Schlüssel-informationen'**
+```
+[Azure Portal] -> Resource Groups -> ACDMY-Network -> myAzVPNGWay
+ -> Connections -> 
+
+ Name: azure-to-interxion
+ Connection Type: Site-to-Site (IPSec)
+ Virtual Network Gateway: myAzVPNGWay
+ Local Network Gateway: interxion-ipfire....
+ Shared Key: ************** (your choice here)
+ Resource Group: ACDMY-Network
+``` 
+
+[onprem] VPN Gerät konfigurieren (e.g. ipfire)
+IPfire -> Services -> 'Connection Status and -Control' -> 'Add'
+   -> 'Net-to-Net Virtual Private Network'  -> Add
+
+   Remote host/IP: Enter the public IP of your Azure VPN Gway ([Azure Portal] -> ACDMY-Network -> myAzVPNGWay-IP )
+   Remote subnet: Enter the address Range of your VNET in Azure (10.10.0.0/255.255.0.0)
+   Use a pre-shared key: ************** (take the key you used above)
+
+   You need to modify the default cipher settings in your ipfire to support
+
+
 

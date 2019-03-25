@@ -30,16 +30,16 @@ Get-AzSubscription | Out-GridView -Title "Welche Subscription soll verwendet wer
    $OnPremVPNDevicePubIPPrefix = "88.205.106."
    $OnPremVPNDeviceAddressPrefix = @('172.16.101.0/24')
    
-   $AddressSpace = @("10.10.0.0/16")
    $SubnetNames = @{
         "VMSubNet1" = "10.10.10.0/24"     #
         "DCSubnet" = "10.10.200.0/24"     #
-        "GatewaySubnet"="10.10.250.0/24"  #needs to be "GatewaySubnet" for azure - don't rename!    }
+        "GatewaySubnet"="10.10.250.0/24"  #needs to be "GatewaySubnet" for azure - don't rename!
+    }
    $VirtualNetworkGatewayName = "myAzVPNGWay"
 
    $GatewayConnectionName = "azure-to-interxion"
 
-   $SharedKey = "S3rK0mplexesSecrE!-"
+   $SharedKey = "************************"    #ToDo: Enter a secret here....
 #endregion
 
 #region User Input Helper function
@@ -191,6 +191,20 @@ $onPrem = Get-AzLocalNetworkGateway -Name $OnPremVPNDeviceName -ResourceGroupNam
 $ipsecMoreComplexPolicy = New-AzIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup14 -IpsecEncryption AES256 -IpsecIntegrity SHA256 -PfsGroup PFS2048 -SALifeTimeSeconds 27000 -SADataSizeKilobytes 102400000
 
 
-New-AzVirtualNetworkGatewayConnection -Name $GatewayConnectionName -ResourceGroupName $NetworkRG -Location $Location `    -VirtualNetworkGateway1 $GW -LocalNetworkGateway2 $onPrem `    -ConnectionType IPsec -RoutingWeight 10 -SharedKey $SharedKey   #-IpsecPolicies $ipsecMoreComplexPolicy <# in case of updating    $connection  = Get-AzVirtualNetworkGatewayConnection -Name $GatewayConnectionName -ResourceGroupName $NetworkRG
+New-AzVirtualNetworkGatewayConnection -Name $GatewayConnectionName -ResourceGroupName $NetworkRG -Location $Location `
+    -VirtualNetworkGateway1 $GW -LocalNetworkGateway2 $onPrem `
+    -ConnectionType IPsec -RoutingWeight 10 -SharedKey $SharedKey   #-IpsecPolicies $ipsecMoreComplexPolicy 
+
+<# in case of updating
+    $connection  = Get-AzVirtualNetworkGatewayConnection -Name $GatewayConnectionName -ResourceGroupName $NetworkRG
     $newpolicy   = New-AzIpsecPolicy -IkeEncryption AES256 -IkeIntegrity SHA384 -DhGroup DHGroup14 -IpsecEncryption AES256 -IpsecIntegrity SHA256 -PfsGroup PFS2048 -SALifeTimeSeconds 14400 -SADataSizeKilobytes 102400000
-    Set-AzVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection -IpsecPolicies $newpolicy -UsePolicyBasedTrafficSelectors $True    (Get-AzVirtualNetworkGatewayConnection -Name $GatewayConnectionName -ResourceGroupName $NetworkRG).IpsecPolicies#>#Configure your onprem VPN Device (RRAS, etc....)$gwpip = (Get-AzPublicIpAddress -Name $($VirtualNetworkGatewayName+"IP") -ResourceGroupName $NetworkRG)"Your Azure Gateway has: `nIP: {0} your secret is ""{1}""" -f $gwpip.IpAddress,$SharedKey#cleanup#Remove-AzResourceGroup -Name $NetworkRG -force
+    Set-AzVirtualNetworkGatewayConnection -VirtualNetworkGatewayConnection $connection -IpsecPolicies $newpolicy -UsePolicyBasedTrafficSelectors $True
+    (Get-AzVirtualNetworkGatewayConnection -Name $GatewayConnectionName -ResourceGroupName $NetworkRG).IpsecPolicies
+#>
+
+#Configure your onprem VPN Device (RRAS, etc....)
+$gwpip = (Get-AzPublicIpAddress -Name $($VirtualNetworkGatewayName+"IP") -ResourceGroupName $NetworkRG)
+"Your Azure Gateway has: `nIP: {0} your secret is ""{1}""" -f $gwpip.IpAddress,$SharedKey
+
+#cleanup
+#Remove-AzResourceGroup -Name $NetworkRG -force
