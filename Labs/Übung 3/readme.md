@@ -2,7 +2,7 @@
 
 In diesen Lab erstellen wir eine VPN Site2Site Verbindung von Azure zu interxion
 
-Dinge die man für S2S VPN braucht
+Dinge die man für S2S VPN braucht:
 ```
 [Azure]
 * VPN Gateway in eigenem Subnet.
@@ -27,6 +27,6 @@ Gateway subnet address range: 10.10.250.0/24
 Public IP address -> create new -> 'myAzVPNGWay-IP'
 Resource Group: ACDMY-Network
 Location: West Europe
-
 ```
+![image](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%203/VPNGWay.PNG)
 -> the GW will take approx 30 mins. to create -> come back later....
