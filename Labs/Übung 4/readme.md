@@ -55,4 +55,4 @@ The script will create a Storage Account which you can use for the recovery (tem
         ->Restore Type: Create Virtual Machine
         VM Name: VMTwo
 ```
-VMRec
+![VMRec](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/VMRecovery.PNG)
