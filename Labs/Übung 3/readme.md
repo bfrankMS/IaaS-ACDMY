@@ -29,4 +29,20 @@ Resource Group: ACDMY-Network
 Location: West Europe
 ```
 ![image](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%203/VPNGWay.PNG)
+
 -> the GW will take approx 30 mins. to create -> come back later....
+
+**Local Network Gateway konfiguration erstellen**
+```
+[Azure Portal] -> Resource Groups -> ACDMY-Network ->'+ Add' ->
+-> type 'Local network gateway' -> Create
+
+Name: interxion-ipfire.....
+IP Address: ask your instructor ;-)
+Address Space: 172.16.101.0/24
+Resource Group: ACDMY-Network
+Location: West Europe
+
+->Create
+```
+
