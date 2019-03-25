@@ -11,12 +11,12 @@ Herzlich willkommen zum:
 2. VM - mit VM Wizard im Portal erstellen.
 3. Hybrid Networking mit VPN
 4. Backup von einer VM einrichten.
-(X. Azure AD Connect einrichten)
 5. Kosten Überblick erhalten / Einsparmöglichkeiten diskutieren
 6. Automation
 7. Monitoring onprem CPU Usage
 
 Have fun!
 
-
+optional
+(Azure AD Connect einrichten)
 
