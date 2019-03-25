@@ -36,11 +36,11 @@ Once a backup is done the view changes and you can restore from the 'vault'. You
   1. Select a recovery point (in time)
   2. Download the executable -> execute with Admin priviledges -> enter the password as shown in the portal
 ```
-![Screenshot](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/FileRecovery1.PNG)
+![FileRec1](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/FileRecovery1.PNG)
 ```
   3. In the mounted drive browse to the path "c:\temp" and recover the file from the vm.
 ```
-![Screenshot2]((https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/FileRecovery2.PNG))
+![FileRec2](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/FileRecovery2.PNG)
 
 
 
@@ -49,4 +49,10 @@ Once a backup is done the view changes and you can restore from the 'vault'. You
 Open '4.2 - RunBeforeRestore.ps1' in your favorite editor (e.g. right click -> edit)
 Execute it - you might need to uncoomment the login to azure first
 The script will create a Storage Account which you can use for the recovery (temporary).
+[Azure Portal] -> Resource Groups -> ACDMY-VMOne -> 'VMOne'
+  -> Backup -> Restore VM
+     -> Select the latest restore point
+        ->Restore Type: Create Virtual Machine
+        VM Name: VMTwo
 ```
+VMRec
