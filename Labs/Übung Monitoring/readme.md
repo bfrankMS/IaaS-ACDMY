@@ -37,10 +37,10 @@ Control Panel\System and Security
        -> type 'System' -> +.
           ->check the severities Error and Warning.
             -> Click Save at the top of the page to save the configuration.
-    ->"Data" -> "Windows Event Logs.
-
-select some counters unselect some others.
-add e.g. 
+    
+    ->"Data" -> "Windows Performance Counters.
+        ->select some counters unselect some others.
+add the following counter
 Processor Information(_Total)\% Processor Time
 
     -> Click Save at the top of the page to save the configuration.
