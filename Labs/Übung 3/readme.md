@@ -60,15 +60,18 @@ Location: West Europe
  Resource Group: ACDMY-Network
 ``` 
 
-[onprem] VPN Gerät konfigurieren (e.g. ipfire)
+**[onprem] VPN Gerät konfigurieren (e.g. ipfire)**
 IPfire -> Services -> 'Connection Status and -Control' -> 'Add'
    -> 'Net-to-Net Virtual Private Network'  -> Add
+![IPFire1](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%203/ipfire1.PNG)
 
    Remote host/IP: Enter the public IP of your Azure VPN Gway ([Azure Portal] -> ACDMY-Network -> myAzVPNGWay-IP )
    Remote subnet: Enter the address Range of your VNET in Azure (10.10.0.0/255.255.0.0)
    Use a pre-shared key: ************** (take the key you used above)
+![IPFire2](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%203/ipfire2.PNG)
 
-   You need to modify the default cipher settings in your ipfire to support
+   You need to modify the default cipher settings in your ipfire:
+![IPFire3](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%203/ipfire3.PNG)
 
 
 
