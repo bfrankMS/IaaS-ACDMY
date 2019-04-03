@@ -1,19 +1,20 @@
-**3. Hybrid Networking mit VPN**
+# Hybrid Networking mit VPN 
+In diesen Lab erstellen wir eine VPN Site2Site Verbindung von  
+Azure [cloud] <---VPN S2S---> interxion [onprem]
 
-In diesen Lab erstellen wir eine VPN Site2Site Verbindung von Azure zu interxion
+## Dinge die man für S2S VPN braucht:
 
-Dinge die man für S2S VPN braucht:
-```
-[Azure]
-* VPN Gateway in eigenem Subnet.
+**Azure**
+* [VPN Gateway in eigenem Subnet.](#1)
 * VPN GWay braucht eine Public IP (dynamic)
-* Definition wie die onprem VPN / FWall zu erreichen ist (aka LocalNetworkGateway)
-* Verbindungs Objekt mit 'Schlüssel-informationen' ;-)
-[onprem]
-* ein von Azure unterstütztes VPN-Device
+* [Definition wie die onprem VPN / FWall zu erreichen ist (aka LocalNetworkGateway)](#2)
+* [Verbindungs Objekt mit 'Schlüssel-informationen' ;-)](#3)
 
-```
-**Gateway subnet erstellen**
+**onprem**
+* [Ein von Azure unterstütztes VPN-Device (als 'Gegenstelle' mit entsprechender Konfiguration)](#4)
+
+## 1
+## VPN Gateway mit eigenem Subnet und Public IP erstellen
 ```
 [Azure Portal] -> '+ Create a resource' -> type "Virtual network gateway"
   -> Create
@@ -32,7 +33,8 @@ Location: West Europe
 
 -> the GW will take approx 30 mins. to create -> come back later....
 
-**Local Network Gateway konfiguration erstellen**
+## 2
+## [Azure] Local Network Gateway Konfiguration erstellen
 ```
 [Azure Portal] -> Resource Groups -> ACDMY-Network ->'+ Add' ->
 -> type 'Local network gateway' -> Create
@@ -47,7 +49,8 @@ Location: West Europe
 ```
 ![Local Network Gateway](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%203/LocalNetworkGW.png)
 
-**Verbindungs Objekt mit 'Schlüssel-informationen'**
+## 3 
+## [Azure] Verbindungs Objekt mit 'Schlüssel-informationen'
 ```
 [Azure Portal] -> Resource Groups -> ACDMY-Network -> myAzVPNGWay
  -> Connections -> 
@@ -60,7 +63,8 @@ Location: West Europe
  Resource Group: ACDMY-Network
 ``` 
 
-**[onprem] VPN Gerät konfigurieren (e.g. ipfire)**
+## 4
+## Onpremise VPN-'Gegenstelle' konfigurieren (e.g. ipfire)
 ```
 IPfire -> Services -> 'Connection Status and -Control' -> 'Add'
    -> 'Net-to-Net Virtual Private Network'  -> Add
