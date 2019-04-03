@@ -1,4 +1,13 @@
-**Backup von einer VM einrichten.**
+# Backup einer VM einrichten. #
+
+* [1. Backup Vault erstellen](#1)
+* [2. Eine Datei in der VM erstellen.](#2)
+* [3. Erstes Backup manuell starten.](#3)
+* [4. Eine Datei wiederherstellen.](#4)
+* [5. Eine VM wiederherstellen.](#5)
+
+## 1
+## Backup Vault erstellen
 ```
 [Azure Portal] -> Resource Groups -> ACDMY-VMOne -> 'VMOne' 
   -> Operations -> Backup
@@ -10,27 +19,30 @@ Choose backup policy -> '(new) DailyPolicy'
 ```
 ![EnableBackup](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/EnableBackup.PNG)
 
-**Open script '4.1 - RunBeforeBackup.ps1'**
-```
-in your favorite editor (e.g. right click -> edit)
-Execute it - you might need to uncoomment the login to azure first
-The script will be run within the VM you choose and create a file in c:\temp with a timestamp.
-```
+## 2
+## Eine Datei in der VM erstellen.
+Navigieren Sie in der PowerShell in das Verzeichnis mit dem Script **RunBeforeBackup.ps1**  
+und starten Sie dieses.  
+Das Script führt Code innerhalb der Azure VM aus, der eine Datei ins Verzeichnis c:\temp schreibt.  
+Wir werden diese Datei aus dem Backup später wiederherstellen.
 
-**Trigger the backup manually**
+## 3 
+## Erstes Backup manuell starten.
 ```
 [Azure Portal] -> Resource Groups -> ACDMY-VMOne -> 'VMOne'
    ->Operation -> Backup -> 'Backup Now'
 ```
 ![TriggerBackup](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/TriggerBackupNJobs.PNG)
 
-Here are the running jobs:
-
+Der angestossene Backup-Job ist hier einsehbar:  
 ![ScreenshotBackupJobs](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/BackupJob.PNG)
 
-**Do a file recovery**
+## 4
+## Eine Datei wiederherstellen.
+Nach erfolgreichem Backup ändert sich die Ansicht und man kann aus dem 'Vault' die Wiederherstellung starten.  
+Beim Wiederherstellen von Dateien lädt man ein Tool herunter. Die Disk der VM aus dem Backup wird am lokalen System 'gemountet'.  
+Danach kann man die zu wiederherstellen Dokumente 'browsen' und kopieren.
 ```
-Once a backup is done the view changes and you can restore from the 'vault'. You will download a tool that mounts the disk of the azure vm.
 [Azure Portal] -> Resource Groups -> ACDMY-VMOne -> 'VMOne'
   -> Backup -> File restore 
   1. Select a recovery point (in time)
@@ -43,12 +55,12 @@ Once a backup is done the view changes and you can restore from the 'vault'. You
 ![FileRec2](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/FileRecovery2.PNG)
 
 
-
-**Do a vm recovery**
+## 5 
+## Eine VM wiederherstellen.
+Navigieren Sie in der PowerShell in das Verzeichnis mit dem Script **RunBeforeRestore.ps1**  
+und starten Sie dieses.
+Das Script führt erstellt einen Storage Account der temporär für die wiederherstellung einer VM genutzt wird.
 ```
-Open '4.2 - RunBeforeRestore.ps1' in your favorite editor (e.g. right click -> edit)
-Execute it - you might need to uncoomment the login to azure first
-The script will create a Storage Account which you can use for the recovery (temporary).
 [Azure Portal] -> Resource Groups -> ACDMY-VMOne -> 'VMOne'
   -> Backup -> Restore VM
      -> Select the latest restore point
