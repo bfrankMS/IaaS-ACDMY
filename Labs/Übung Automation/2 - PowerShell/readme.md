@@ -48,10 +48,12 @@ Bekommen Sie die VM erstellt?
 ## 3
 ## 'Stepping Through' VM Create Skript
 
-Öffnen Sie die PowerShell ISE (als Administrator)
-Öffnen Sie die Datei 'CreateVMTwo.ps1'
-Setzen Sie den Cursor in Ziele 71 (Bei '$VNET = Get-AzVirtualNetwork...') 
-Pressen Sie F9 oder Setzen Sie den Breakpoint über ISE -> Debug -> 'Toggle Breakpoint'
-Starten Sie das Script ('F5')
-Steppen Sie durch das Programm mit F10
-Tipp: Legen Sie sich das [Azure Portal](https://portal.azure.com) (Home->All resources) auf die andere Hälfte des Screens und beobachten Sie den Fortschritt:
+Öffnen Sie die PowerShell ISE (als Administrator)  
+Öffnen Sie die Datei 'CreateVMTwo.ps1'  
+Setzen Sie den Cursor in Ziele 71 (Bei '$VNET = Get-AzVirtualNetwork...')   
+Pressen Sie F9 oder Setzen Sie den Breakpoint über ISE -> Debug -> 'Toggle Breakpoint'  
+![Toggle Breakpoint](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%20Automation/2%20-%20PowerShell/ISEToggleBreakpoint.png)  
+Starten Sie das Script ('F5')  
+Steppen Sie durch das Programm mit F10  
+Tipp: Legen Sie sich das [Azure Portal](https://portal.azure.com) (Home->All resources) auf die andere Hälfte des Screens und beobachten Sie den Fortschritt:    
+![Split Screen](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%20Automation/2%20-%20PowerShell/SplitScreenISEvsPortal.png)
