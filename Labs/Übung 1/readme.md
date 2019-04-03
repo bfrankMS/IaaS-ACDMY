@@ -142,17 +142,17 @@ Mode                LastWriteTime         Length Name
 
 PS C:\Labs> .\CreateVMOne.ps1
 ```
-Melden Sie sich bei Azure an.
+Melden Sie sich bei Azure an.  
 ![Melden Sie sich bei Azure an.](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%201/01-ScriptStartLogin2Azure.png)
 
-Wählen Sie die korrekte Azure Subscription aus.  
+Wählen Sie die korrekte Azure Subscription aus.    
 ![Wählen Sie die korrekte Azure Subscription aus.](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%201/02-SelecSubscription.png)
 
-Nehmen Sie als größe die Standard_DS2_v2: 
+Nehmen Sie als größe die Standard_DS2_v2:   
 ![Nehmen Sie als größe die Standard_DS2_v2](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%201/03-VMGroesse.png)
 
-Wählen Sie ein hinreichend komplexes Passwort:
+Wählen Sie ein hinreichend komplexes Passwort:    
 ![Wählen Sie ein hinreichend komplexes Passwort.](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%201/04-VMUser.png)
 
-Warten Sie bis das PowerShell Script fertig ist:
+Warten Sie bis das PowerShell Script fertig ist:  
 ![Warten Sie bis das PowerShell Script fertig ist](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%201/05-PowerShell%20Job%20erfolgreich.png)
