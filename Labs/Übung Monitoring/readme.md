@@ -19,7 +19,7 @@ Log Analytics Workspace: your choice (needs to be unique)
 	Name: 'ACDMY-LogAnalytics'
 	Location: 'West Europe'
 ```
-LogAnalyticsScreenshot
+![LogAnalyticsScreenshot](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%20Monitoring/LogAnalyticsWS.PNG)
 
 ## 2
 ## Onpremise Agent / Software installieren und mit LA-Workspace verbinden.
