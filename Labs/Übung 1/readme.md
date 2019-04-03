@@ -1,45 +1,143 @@
-**1. VNET, PUPIP, AVSet einzeln im Portal erstellen**
+# PowerShell Module für Azure installieren und eine VM damit erstellen #
 
-**Create a Resource Group in Azure:**
-```
-[Azure Portal] -> Resource Groups -> '+ Add' ->
-Name: ACDMY-Network
-Region: West Europe
-->Create
-```
-**Add an Azure virtual network (VNET) in the resource group**
-```
-[Azure Portal] -> Resource Groups -> ACDMY-Network ->'+ Add' ->
--> type 'Virtual Network' -> Create
+* [1. PowerShell Az Module für Azure installieren ](#1.)
+* [2. Erste Schritte ...](#2.)
+* [3. VM mit PowerShell erstellen](#3.)
 
-Name: myVNET
-Address Space: 10.10.0.0/16
-Resource Group: ACDMY-Network
-Subnet: Name: VMSubnet1
-Address Range 10.10.10.0/24
+## 1.
+## PowerShell starten und folgenden Befehl ausführen: 
+```
+Install-Module Az
 ```
 
-**Add a public IP Address in the ACDMY-VMOne(new)**
+Mit 'Y' die installation des Nuget Providers erlauben:
 ```
-[Azure Portal] -> '+ Create a resource' ->
--> type 'Public IP address' -> Create
-Name: VMOne-IP
-SKU: Basic
-IP Version: IPv4
-IP address assignment: Dynamic / Static (your choice / What is the difference?)
-DNS name Label: try one - needs to be unique
-Resource Group -> Create New -> ACDMY-VMOne
-Location: West Europe
+NuGet provider is required to continue
+PowerShellGet requires NuGet provider version '2.8.5.201' or newer to interact with NuGet-based repositories. The NuGet
+ provider must be available in 'C:\Program Files\PackageManagement\ProviderAssemblies' or
+'C:\Users\Administrator\AppData\Local\PackageManagement\ProviderAssemblies'. You can also install the NuGet provider by
+ running 'Install-PackageProvider -Name NuGet -MinimumVersion 2.8.5.201 -Force'. Do you want PowerShellGet to install
+and import the NuGet provider now?
+[Y] Yes  [N] No  [S] Suspend  [?] Help (default is "Y"): y
+```
+Und mit 'A' der PowerShell Gallery als Code-Quelle vertrauen:
+```
+Untrusted repository
+You are installing the modules from an untrusted repository. If you trust this repository, change its
+InstallationPolicy value by running the Set-PSRepository cmdlet. Are you sure you want to install the modules from
+'PSGallery'?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help (default is "N"): a
+```
+Die installation der PowerShell Module kann etwas dauern. Die installierten Module lassen sich mit dem Befehl:
+```
+get-module Az* -ListAvailable
+
+```
+anzeigen:
+```
+    Directory: C:\Program Files\WindowsPowerShell\Modules
+
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Script     1.4.0      Az.Accounts                         {Disable-AzDataCollection, Disable-AzContextAutosave, Enab...
+Script     1.0.1      Az.Aks                              {Get-AzAks, New-AzAks, Remove-AzAks, Import-AzAksCredentia...
+Script     1.0.2      Az.AnalysisServices                 {Resume-AzAnalysisServicesServer, Suspend-AzAnalysisServic...
+Script     1.0.0      Az.ApiManagement                    {Add-AzApiManagementRegion, Get-AzApiManagementSsoToken, N...
+Script     1.0.0      Az.ApplicationInsights              {Get-AzApplicationInsights, New-AzApplicationInsights, Rem...
+Script     1.2.0      Az.Automation                       {Get-AzAutomationHybridWorkerGroup, Remove-AzAutomationHyb...
+Script     1.0.0      Az.Batch                            {Remove-AzBatchAccount, Get-AzBatchAccount, Get-AzBatchAcc...
+Script     1.0.0      Az.Billing                          {Get-AzBillingInvoice, Get-AzBillingPeriod, Get-AzEnrollme...
+Script     1.1.0      Az.Cdn                              {Get-AzCdnProfile, Get-AzCdnProfileSsoUrl, New-AzCdnProfil...
+Script     1.0.1      Az.CognitiveServices                {Get-AzCognitiveServicesAccount, Get-AzCognitiveServicesAc...
+Script     1.6.0      Az.Compute                          {Remove-AzAvailabilitySet, Get-AzAvailabilitySet, New-AzAv...
+Script     1.0.0      Az.ContainerInstance                {New-AzContainerGroup, Get-AzContainerGroup, Remove-AzCont...
+Script     1.0.1      Az.ContainerRegistry                {New-AzContainerRegistry, Get-AzContainerRegistry, Update-...
+.
+.
+.
 ```
 
-**Add an 'Availability Set' to the Res-Group: ACDMY-VMOne**
+## 2.
+## Erste Schritte...
+Bei Azure anmelden:
 ```
-[Azure Portal] -> Resource Groups -> ACDMY-VMOne ->'+ Add' -> 
-'Availability Set'
-Name: VMOne-AVSet
-RG: ACDMY-VMOne
-Location: West Europe
-Fault Domains:2
-Update Domains:5
+Login-AzAccount
 ```
-[Read: Manage the availability of Windows virtual machines in Azure](https://docs.microsoft.com/en-us/azure/virtual-machines/windows/manage-availability?toc=%2Fazure%2Fvirtual-machines%2Fwindows%2Fclassic%2Ftoc.json)
+Die verfügbaren Azure Subscriptions auflisten:
+```
+Get-AzSubscription
+
+Name                     Id                                   TenantId                             State
+----                     --                                   --------                             -----
+Azure Pass - Sponsorship 79021c9b-147b-4dc0-ab8c-a3de94905f3f c097c15f-e692-4b72-8f72-490b95209f57 Enabled
+
+```
+Eine bestimmte Subscription für die weitere Verarbeitung wählen:
+```
+Get-AzSubscription | Out-GridView -PassThru | Set-AzContext
+```
+Die verfügbaren VM-Typen in der Region auflisten lassen:
+```
+Get-AzVMSize -Location 'west europe'
+
+Name                   NumberOfCores MemoryInMB MaxDataDiskCount OSDiskSizeInMB ResourceDiskSizeInMB
+----                   ------------- ---------- ---------------- -------------- --------------------
+Standard_A0                        1        768                1        1047552                20480
+Standard_A1                        1       1792                2        1047552                71680
+Standard_A2                        2       3584                4        1047552               138240
+Standard_A3                        4       7168                8        1047552               291840
+.
+.
+.
+
+```
+Alle Befehle in dem PowerShell Modul für virtuelle Computer in Azure anzeigen:
+```
+Get-Command -Module Az.Compute
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Get-AzVmssDiskEncryptionStatus                     1.6.0      Az.Compute
+Alias           Get-AzVmssVMDiskEncryptionStatus                   1.6.0      Az.Compute
+Alias           Repair-AzVmssServiceFabricUD                       1.6.0      Az.Compute
+Cmdlet          Add-AzContainerServiceAgentPoolProfile             1.6.0      Az.Compute
+Cmdlet          Add-AzImageDataDisk                                1.6.0      Az.Compute
+Cmdlet          Add-AzVhd                                          1.6.0      Az.Compute
+.
+.
+.
+```
+Hilfe mit Beispielen zu einem bestimmten Befehl:
+```
+help New-AzVM -Examples
+```
+liefert so o.ä.
+```
+...
+SYNOPSIS
+    Creates a virtual machine.
+
+
+    ------------- Example 1: Create a virtual machine -------------
+
+    PS C:\> New-AzVM -Name MyVm -Credential (Get-Credential)
+...
+```
+
+## 3.
+## VM mit PowerShell erstellen
+
+Navigieren Sie in der PowerShell in das Verzeichnis mit dem Script 'CreateVMOne.ps1' und starten Sie dieses:
+```
+PS C:\> cd C:\Labs\
+PS C:\Labs> dir
+
+    Directory: C:\Labs
+
+Mode                LastWriteTime         Length Name
+----                -------------         ------ ----
+-a----       03.04.2019     14:18           6779 CreateVMOne.ps1
+
+PS C:\Labs> .\CreateVMOne.ps1
+```
