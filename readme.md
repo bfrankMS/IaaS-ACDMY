@@ -1,22 +1,17 @@
-Herzlich willkommen zum:
+### Herzlich willkommen zum:
 
-**Intelligent Cloud Bootcamp: Azure IaaS Academy**
+# Intelligent Cloud Bootcamp: Azure IaaS Academy
 
-* **Access** -> RDP Profile für Zugang zur Demo umgebung
-* **Presentation** -> Powerpoint Material
-* **Labs** -> Übungsanleitung (und Cheat-Scripte)
+* **Access** -> RDP Profile für Zugang zur Demo Umgebung
+* **Labs** -> Übungsanleitung
 
 **Labs-Flow:**
-1. VNET, PUPIP, AVSet einzeln im Portal erstellen
-2. VM - mit VM Wizard im Portal erstellen.
-3. Hybrid Networking mit VPN
-4. Backup von einer VM einrichten.
-5. Monitoring onprem CPU Usage
-x. Kosten Überblick erhalten / Einsparmöglichkeiten diskutieren
-x. Automation
+* **Übung 1.** PowerShell für Azure einrichten und eine VM erstellen  
+* **Ubung 2.** VM Backup einrichten.  
+* **Übung 3.** Hybrid Networking mit S2S VPN einrichten  
+* **Übung - Automation** (PowerShell, ARM, CSE, Azure Automation)  
+* **Übung - Monitoring** von onpremise VMs  
+* **Übung - Kosten** Überblick erhalten  
 
 Have fun!
-
-optional
-(Azure AD Connect einrichten)
 
