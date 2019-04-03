@@ -1,7 +1,16 @@
-**Monitoring onprem CPU Usage**
+# Monitoring von onpremise VMs (z.B. CPU Auslastung) #
 
-[see](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-collect-windows-computer) 
+In dieser Übung sammeln wir über einen Agenten Daten von einer onpremise VM ein und werten diese in Azure aus.  
+Siehe: [Configure Log Analytics agent for Windows computers in a hybrid environment](https://docs.microsoft.com/en-us/azure/azure-monitor/learn/quick-collect-windows-computer) 
 
+**Ablauf**
+* [1. Log Analytics Workspace erstellen](#1)
+* [2. Onpremise Agent / Software installieren und mit LA-Workspace verbinden.](#2)
+* [3. Zu sammelnde Daten festlegen.](#3)
+* [4. Abfrage ('Query') erstellen und Darstellung auf Dashboard 'pinnen'](#4)
+
+## 1
+## Log Analytics Workspace erstellen
 ```
 [Azure Portal] -> '+ Create a resource' -> 'Log analytics' -> Create
 Create New
@@ -12,7 +21,8 @@ Log Analytics Workspace: your choice (needs to be unique)
 ```
 LogAnalyticsScreenshot
 
-
+## 2
+## Onpremise Agent / Software installieren und mit LA-Workspace verbinden.
 ```
 [Azure Portal] -> Home -> Resource Groups ->'ACDMY-LogAnalytics' 
   -> e.g. your workspace -> Settings: Advanced Settings
@@ -32,6 +42,8 @@ Control Panel\System and Security
 ->Microsoft Monitoring Agent Properties
 ```
 
+## 3
+## Zu sammelnde Daten festlegen.
 ```
 [Azure Portal] -> Home -> Resource Groups ->'ACDMY-LogAnalytics' 
   -> e.g. bfrank0815WSpace -> Settings: Advanced Settings
@@ -47,7 +59,8 @@ Processor Information(_Total)\% Processor Time
 
     -> Click Save at the top of the page to save the configuration.
 ```
-
+## 4
+## Abfrage ('Query') erstellen und Darstellung auf Dashboard 'pinnen'
 ```
 [Azure Portal] -> Resource groups -> ACDMY-LogAnalytics -> bfrankworkspace - Logs
 ```
