@@ -1,11 +1,12 @@
 # PowerShell Module für Azure installieren und eine VM damit erstellen #
 
-* [1. PowerShell Az Module für Azure installieren ](#1.)
-* [2. Erste Schritte ...](#2.)
-* [3. VM mit PowerShell erstellen](#3.)
+* [1. PowerShell Az Module für Azure installieren ](#1)
+* [2. Erste Schritte ...](#2)
+* [3. VM mit PowerShell erstellen](#3)
 
-## 1.
-## PowerShell starten und folgenden Befehl ausführen: 
+## 1
+## PowerShell Az Module für Azure installieren
+PowerShell starten und folgenden Befehl ausführen: 
 ```
 Install-Module Az
 ```
@@ -58,7 +59,7 @@ Script     1.0.1      Az.ContainerRegistry                {New-AzContainerRegist
 .
 ```
 
-## 2.
+## 2
 ## Erste Schritte...
 Bei Azure anmelden:
 ```
@@ -125,7 +126,7 @@ SYNOPSIS
 ...
 ```
 
-## 3.
+## 3
 ## VM mit PowerShell erstellen
 
 Navigieren Sie in der PowerShell in das Verzeichnis mit dem Script 'CreateVMOne.ps1' und starten Sie dieses:
@@ -141,3 +142,9 @@ Mode                LastWriteTime         Length Name
 
 PS C:\Labs> .\CreateVMOne.ps1
 ```
+Melden Sie sich bei Azure an.
+
+Wählen Sie die korrekte Azure Subscription aus.
+Nehmen Sie als größe die Standard_DS2_v2
+Wählen Sie ein hinreichend komplexes Passwort.
+Warten Sie bis das PowerShell Script fertig ist:
