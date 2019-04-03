@@ -17,7 +17,7 @@ Resource Group -> 'Create new' -> 'ACDMY-VMBackup'
 Choose backup policy -> '(new) DailyPolicy'
   ->Enable Backup
 ```
-![EnableBackup](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/EnableBackup.PNG)
+![EnableBackup](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%202/EnableBackup.PNG)
 
 ## 2
 ## Eine Datei in der VM erstellen.
@@ -32,10 +32,10 @@ Wir werden diese Datei aus dem Backup später wiederherstellen.
 [Azure Portal] -> Resource Groups -> ACDMY-VMOne -> 'VMOne'
    ->Operation -> Backup -> 'Backup Now'
 ```
-![TriggerBackup](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/TriggerBackupNJobs.PNG)
+![TriggerBackup](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%202/TriggerBackupNJobs.PNG)
 
 Der angestossene Backup-Job ist hier einsehbar:  
-![ScreenshotBackupJobs](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/BackupJob.PNG)
+![ScreenshotBackupJobs](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%202/BackupJob.PNG)
 
 ## 4
 ## Eine Datei wiederherstellen.
@@ -48,11 +48,11 @@ Danach kann man die zu wiederherstellen Dokumente 'browsen' und kopieren.
   1. Select a recovery point (in time)
   2. Download the executable -> execute with Admin priviledges -> enter the password as shown in the portal
 ```
-![FileRec1](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/FileRecovery1.PNG)
+![FileRec1](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%202/FileRecovery1.PNG)
 ```
   3. In the mounted drive browse to the path "c:\temp" and recover the file from the vm.
 ```
-![FileRec2](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/FileRecovery2.PNG)
+![FileRec2](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%202/FileRecovery2.PNG)
 
 
 ## 5 
@@ -67,4 +67,4 @@ Das Script führt erstellt einen Storage Account der temporär für die wiederhe
         ->Restore Type: Create Virtual Machine
         VM Name: VMTwo
 ```
-![VMRec](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%204/VMRecovery.PNG)
+![VMRec](https://github.com/bfrankMS/IaaS-ACDMY/blob/master/Labs/%C3%9Cbung%202/VMRecovery.PNG)
