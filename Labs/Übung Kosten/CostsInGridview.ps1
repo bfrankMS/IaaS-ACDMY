@@ -54,8 +54,19 @@ function OpenFolderDialog ()
 
 #After your created a daily export in Azure -> download a file ...
 
+#region what directory are we in?
+    if ($host.name -eq 'ConsoleHost') # or -notmatch 'ISE'
+    {
+      $currentPath = split-path $SCRIPT:MyInvocation.MyCommand.Path -parent
+    }
+    else
+    {
+      $currentPath = split-path $psISE.CurrentFile.FullPath -parent
+    }
+#endregion  
+
 #Get the files to import
-$file = ShowOpenFileDialog "What is your CSV to import?" "c:\" "CSV (*.csv)|*.csv|All files (*.*)|*.*"
+$file = ShowOpenFileDialog "What is your CSV to import?" "$currentPath" "CSV (*.csv)|*.csv|All files (*.*)|*.*"
 
 #$costs = Import-Csv "C:\Users\bfrank\Downloads\dailyAzureExport_9374ad48-2dec-48f6-8a76-cbbf6eb3f7ce.csv"
 $costs = Import-Csv $file -Delimiter ','
