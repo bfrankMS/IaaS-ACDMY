@@ -4,6 +4,8 @@
 
 * **Access** -> RDP Profile für Zugang zur Demo Umgebung
 * **Labs** -> Übungsanleitung
+* [PowerPointFolien](https://1drv.ms/p/s!Ah3kyMI0Hv0ij5En1kgFf0fW_Wvzeg) 
+
 
 **Labs-Flow:**
 * **Übung 1.** PowerShell für Azure einrichten und eine VM erstellen  
