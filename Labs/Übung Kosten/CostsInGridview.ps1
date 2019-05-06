@@ -88,5 +88,7 @@ $currentPath = ""
 #endregion 
 
 #export des subsets in eigene CSV 
-$costs2Export | Export-Csv -Path "$currentPath\Export.csv" -Delimiter ';' -Encoding UTF8 -NoTypeInformation
+
+$time = [System.DateTime]($costs2Export | Sort-Object UsageDateTime -unique | Select-Object -Last 1).usageDatetime
+$costs2Export | Export-Csv -Path "$currentPath\Export$($time.ToString("dd-MM-yyyy")).csv" -Delimiter ';' -Encoding UTF8 -NoTypeInformation
 

@@ -108,7 +108,7 @@ $VMImage = Get-AzVMImage -Location $Location -PublisherName $PublisherOffer.Publ
 $VM= Set-AzVMSourceImage -VM $VM -PublisherName $PublisherOffer.PublisherName -Offer $PublisherOffer.Offer -Skus $VMImageSKU -Verbose -Version $VMImage.Version
 
 #Disable Boot Diagnostics for VM    (is demo - don't need it AND it would require storage account which I don't want to provision)
-$VM =  Set-AzVMBootDiagnostics -VM $VM -Disable 
+$VM =  Set-AzVMBootDiagnostic -VM $VM -Disable 
 
 #Create a Credential
 $Credential = Get-Credential -Message 'Your VM Credentials Please!'
