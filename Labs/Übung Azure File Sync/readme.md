@@ -1,4 +1,4 @@
-# PowerShell Module für Azure installieren und eine VM damit erstellen #
+# Azure File Sync Lab #
 
 Referenzen:  
 [Planning for an Azure Files deployment](https://docs.microsoft.com/en-us/azure/storage/files/storage-files-planning)  
